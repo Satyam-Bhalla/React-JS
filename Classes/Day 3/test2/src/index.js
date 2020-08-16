@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
-import Counters from './components/counters';
-import 'bootstrap/dist/css/bootstrap.css';
 import * as serviceWorker from './serviceWorker';
 
 
-// npm run eject
+
+/********************************* */
+//    User Imported Objects/Classes
+/********************************* */
+import Counters from './components/counters';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 ReactDOM.render(
