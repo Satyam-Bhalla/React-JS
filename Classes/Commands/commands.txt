@@ -1,8 +1,12 @@
 Note:- Please run all these commands inside project folder in cmd/terminal
 
 For creating a new react application -> npx create-react-app [appName]
+
 For installing all the packages of a react application -> npm install
 For starting the project on localhost ->  npm start
 For installing Bootstrap ->  npm i bootstrap@4.1.1
+For installing prop types -> npm install prop-types@15.6.2
+For installing react router dom -> npm i react-router-dom@4.3.1
+
 For building a project -> npm run build
 
