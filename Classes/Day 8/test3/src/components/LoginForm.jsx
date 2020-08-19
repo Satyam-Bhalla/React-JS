@@ -125,7 +125,7 @@ class LoginForm extends Component {
                 className="form-control"
               />
             </div> */}
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" disabled={this.validate()} className="btn btn-primary">
               Login
             </button>
           </form>
