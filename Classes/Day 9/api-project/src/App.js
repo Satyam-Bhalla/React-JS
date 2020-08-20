@@ -1,30 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
+import {ToastContainer} from 'react-toastify';
+
+import config from './config/config.json';
+import http from './utils/httpService';
+
+import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
-
-// Types of requests
-// CRUD application -> Create,Read, Update and Delete
-// POST Request -> Create resource
-// GET Request -> Fetching/Reading the resource
-// PUT([
-//   {'a' :'a'},
-//   {'b':'b'}
-// ]) / PATCH([{'a':'A'}]) -> Updating the resource
-// DELETE Request -> Deleteing a resource
-
-//AJAX Example
-// function loadDoc() {
-//   var xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//       console.log(this.responseText);
-//     }
-//   };
-//   xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
-//   xhttp.send();
-// }
-
-const urlEndpoint = "https://jsonplaceholder.typicode.com/posts";
 
 class App extends Component {
   state = {
@@ -33,8 +14,8 @@ class App extends Component {
   async componentDidMount() {
     // loadDoc();
     console.clear();
-    const { data: posts } = await axios.get(urlEndpoint);
-    // const { data: temp } = await axios.get(
+    const { data: posts } = await http.get(config.urlEndpoint);
+    // const { data: temp } = await http.get(
     //   "https://jsonplaceholder.typicode.com/todos/1"
     // );
     // console.log(temp);
@@ -48,7 +29,7 @@ class App extends Component {
       title: "learning react",
       body: "React is easy to understand",
     };
-    const {data: post} = await axios.post(urlEndpoint,obj);
+    const {data: post} = await http.post(config.urlEndpoint,obj);
     console.log(post);
     const posts = [post , ...this.state.posts];
     
@@ -57,7 +38,7 @@ class App extends Component {
 
   handleUpdate = async (post) => {
     post.title = "Updated title";
-    const {data} =  await axios.put(urlEndpoint+"/"+post.id , post);
+    const {data} =  await http.put(config.urlEndpoint+"/"+post.id , post);
     
     const posts = [...this.state.posts];
     const index = posts.indexOf(post);
@@ -68,13 +49,12 @@ class App extends Component {
 
   handleDelete = async (post) => {
     try{
-      const temp = await axios.delete("https://jsonplaceholder.typicode.com/pos"+"/"+post.id);
-      throw new Error("some random error");
+      const temp = await http.delete("https://jsonplaceholder.typicode.com/pos"+"/"+post.id);
     }catch (err){
-      console.log(err);
-      if(err.response && err.response.status===404){
-        alert('page not found');
-      }
+      // console.log(err);
+      // if(err.response && err.response.status===404){
+      //   alert('page not found');
+      // }
     }
     
     // console.log(temp);
@@ -85,8 +65,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <button className="btn btn-primary" onClick={this.handleAdd}>
-          Add
+        <ToastContainer />
+        <button className="btn btn-primary" onClick={this.handleAdd}> Add
         </button>
         <table className="table">
           <thead>
