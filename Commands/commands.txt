@@ -1,0 +1,39 @@
+Note:- Please run all these commands inside project folder in cmd/terminal
+
+For creating a new react application -> npx create-react-app [appName]
+
+For installing all the packages of a react application -> npm install
+For starting the project on localhost ->  npm start
+For installing Bootstrap ->  npm i bootstrap@4.1.1
+For installing prop types -> npm install prop-types@15.6.2
+For installing react router dom -> npm i react-router-dom@4.3.1
+For installing quer-string in react routing -> npm i query-string@6.1.0
+For Front end Validation in react -> npm install joi-browser@13.4
+For axios installation in API calling ->  npm i axios@0.18
+For handling notifications -> npm install react-toastify@4.1
+
+
+For deployment on Github Pages -> npm install gh-pages --save-dev
+ 
+Add to package.json directly -> "homepage": "http://{github-username}.github.io/{repo-name}"
+Add to scripts property of package.json {
+	"predeploy": "npm run build",
+	"deploy": "gh-pages -d build"
+}
+
+
+For building a project -> npm run build
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+//////////////////GITHUB Commands//////////////////////////////
+////////////////////////////////////////////////////////////////////
+1.) Create a repo on github
+2.) git clone <repo/repository link copied from github>
+2.1.) git pull  // comment -> For pulling the updated files
+3.) git status // comment -> To check the changes/changed files
+4.) git add .
+5.) git commit -m "Changes made messages"
+6.) git push origin master
