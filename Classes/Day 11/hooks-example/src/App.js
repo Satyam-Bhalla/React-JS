@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import {Hello} from './components/Hello';
-
 import { useForm } from "./hooks/useForm";
 import {useFetch} from './hooks/useFetch';
 
@@ -11,12 +10,19 @@ const App = () => {
   // const [password,setPassword] = useState("");
   const [values, setValues] = useForm({ email: "", password: "" });
   const [values2, setValues2] = useForm({ firstname: "", lastname: "" });
-  const [count,setCount] = useState(0);
+  // console.log(localStorage.getItem('count'));
+  const [count,setCount] = useState(localStorage.getItem('count') ? JSON.parse(localStorage.getItem('count')): 0);
   const [showHello,setShowHello] = useState(true);
-
+  
   
 
   const {data,loading} = useFetch(`http://numbersapi.com/${count}/math`);
+  const inputRef = useRef();
+  
+  
+  useEffect(()=>{
+    localStorage.setItem("count",JSON.stringify(count))
+  },[count])
   // useEffect(() => {
   //   // window.location.reload(false);
   //   console.log("Use effect function in progress");
@@ -28,7 +34,8 @@ const App = () => {
 
   return (
     <React.Fragment>
-      {loading? "Loading...":data}
+      {!data ? "Loading...": data}
+      {/* {loading? "Loading...":data} */}
       {/* <button
         onClick={() =>
           setCounter({ count1: counter.count1 + 1, count2: counter.count2 + 1 })
@@ -44,6 +51,7 @@ const App = () => {
       {showHello && <Hello />}
       <div>
         <input
+          ref={inputRef}
           name="email"
           placeholder="Email"
           value={values.email}
@@ -67,6 +75,7 @@ const App = () => {
           value={values2.lastname}
           onChange={setValues2}
         />
+        <button onClick={()=>{inputRef.current.focus();}}>Focus</button>
       </div>
     </React.Fragment>
   );
